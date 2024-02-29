@@ -14,30 +14,63 @@ namespace BattleshipLite
         {
 
             WelcomeMessages();
-            PlayerInformationModel player =  CreatePlayer("Player 1");
-            PlayerInformationModel player2 = CreatePlayer("Player 2");
+            PlayerInformationModel activePlayer =  CreatePlayer("Player 1");
+            PlayerInformationModel opponent = CreatePlayer("Player 2");
             PlayerInformationModel Winner = null;
 
             do {
+                // Display Grid from active player on where they fired
+                DisplayShotGrid(activePlayer);
 
-                DisplayShotGrid(ActivePlayer);
+                //ask active player to shot
+                //determine if the shot is valid or not
+                //determine the shot result
+                RecordPlayerShot(activePlayer, opponent);
+
+                //determine if the shot is over
+                //if over, set active player as a winner
+                //else swap positions(active player to opponent)
+
             } while (Winner==null);
 
             Console.ReadLine();
         }
 
+        private static void RecordPlayerShot(PlayerInformationModel activePlayer, PlayerInformationModel opponent)
+        {
+            throw new NotImplementedException();
+        }
 
         private static void DisplayShotGrid(PlayerInformationModel activePlayer)
         {
-            string currentRow = "";
-
+            string currentRow = activePlayer.ShotGrids[0].SpotLetter;
             foreach (var gridSpot in activePlayer.ShotGrids)
             {
+                if (gridSpot.SpotLetter != currentRow)
+                {
+                    Console.WriteLine();
+                    currentRow = gridSpot.SpotLetter;
+                }
+
                 if (gridSpot.Status == GridSpotStatus.Empty)
                 {
-                    Console.WriteLine($"{gridSpot.SpotLetter} ");
+                    Console.Write($"{gridSpot.SpotLetter}{gridSpot.SpotNumber} ");
                 }
-            }
+
+                else if (gridSpot.Status == GridSpotStatus.Hit)
+                {
+                    Console.WriteLine("X ");
+                }
+                  
+                else if (gridSpot.Status == GridSpotStatus.Miss)
+                {
+                    Console.WriteLine("O ");
+                }
+                else
+                {
+                    Console.WriteLine(" 0 ");
+                }
+            }//end of foreach
         }
 
         private static void WelcomeMessages()
