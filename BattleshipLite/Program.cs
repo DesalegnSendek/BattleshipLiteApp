@@ -20,7 +20,7 @@ namespace BattleshipLite
 
             do {
 
-                DisplayShotGrid(activePlayer);
+                DisplayShotGrid(ActivePlayer);
             } while (Winner==null);
 
             Console.ReadLine();
