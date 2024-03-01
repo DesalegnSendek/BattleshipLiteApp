@@ -10,6 +10,16 @@ namespace BattleshipLiteLibrary
 {
     public static class GameLogic
     {
+        public static int GetShotCount(PlayerInformationModel winner)
+        {
+           
+            return GameLogic.GetShotCount(winner);
+        }
+
+        public static bool IdentifyShotResult(PlayerInformationModel opponent, string row, int column)
+        {
+            throw new NotImplementedException();
+        }
 
         public static void IntializeGrid(PlayerInformationModel model)
         {
@@ -32,9 +42,37 @@ namespace BattleshipLiteLibrary
             }
         }
 
+        public static bool isValidateShot(PlayerInformationModel activePlayer, string row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void MarkShotResult(PlayerInformationModel activePlayer, string row, int column, bool isHit)
+        {
+            throw new NotImplementedException();
+        }
+
         public static bool PlaceShip(PlayerInformationModel model, string location)
         {
             return true;
+        }
+
+        public static bool PlayerStillActive(PlayerInformationModel player)
+        {
+            bool isActive = false;
+
+            foreach (var ship in player.ShipLocations)
+            {
+                if(ship.Status != GridSpotStatus.Sunk)
+                isActive = true;
+            }
+
+            return isActive;
+        }
+
+        public static (string row, int column) SplitRowColumn(string shot)
+        {
+            throw new NotImplementedException();
         }
 
         private static void AddGridSpot (PlayerInformationModel model, string Letter, int Number) 
